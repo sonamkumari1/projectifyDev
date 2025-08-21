@@ -7,10 +7,10 @@ import {
   } from "./ui/dropdown-menu";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
-// import { useTheme } from "./ThemeProvider";
+import { useTheme } from "./ThemeProvider";
 
 const DarkMode = () => { 
-//   const {setTheme} = useTheme();
+  const {setTheme} = useTheme();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>

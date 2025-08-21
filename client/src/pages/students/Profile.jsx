@@ -23,7 +23,6 @@ const Profile = () => {
   const [profilePhoto, setProfilePhoto] = useState("");
 
   const { data, isLoading, refetch } = useLoadUserQuery();
-  console.log(data, "")
   const [
     updateUser,
     {
@@ -35,7 +34,7 @@ const Profile = () => {
     },
   ] = useUpdateUserMutation();
 
-  console.log(updateUserData, "....");
+  console.log(data);
 
   const onChangeHandler = (e) => {
     const file = e.target.files?.[0];

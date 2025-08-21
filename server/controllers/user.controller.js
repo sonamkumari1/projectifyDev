@@ -1,8 +1,7 @@
-
+import {User} from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/generateToken.js";
 import { deleteMediaFromCloudinary, uploadMedia } from "../utils/cloudinary.js";
-import User from "../models/user.model.js";
 
 export const register = async (req,res) => {
     try {
@@ -22,8 +21,7 @@ export const register = async (req,res) => {
             })
         }
         const hashedPassword = await bcrypt.hash(password, 10);
-        await User
-        .create({
+        await User.create({
             name,
             email,
             password:hashedPassword
@@ -90,7 +88,7 @@ export const logout = async (_,res) => {
 export const getUserProfile = async (req,res) => {
     try {
         const userId = req.id;
-        const user = await User.findById(userId).select("-password")
+        const user = await User.findById(userId).select("-password").populate("enrolledCourses");
         if(!user){
             return res.status(404).json({
                 message:"Profile not found",
